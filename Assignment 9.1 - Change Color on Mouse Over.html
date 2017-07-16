@@ -1,0 +1,56 @@
+<!IDOCTYPE HTML>
+<html lang = "en">
+	<head>
+		<meta charset = "utf-8">
+		<title>Change Color on Mouse Over</title>
+	</head>
+	<body>
+		<p>
+			<!-- This introductory line is used so that mousing it over changes all bold words of following paragraph to red text color.-->
+			<a href = "#" onMouseOver = "changeToRed()" onMouseOut = "returnToBlack()">
+			<br>If you wish to change the text color of <i>all</i> <span style = "font-weight: bold">bold</span> words of the following paragraph to <span style = "color: red; font-weight: bold">red</span>, you can mouse over <i>this line</i>; mouse out from <i>this line</i> returns all of them to <span style = "color: black; font-weight: bold">black</span> color.<br>
+			However, should you wish to change the text color of <i>individual</i> <span style = "font-weight: bold">bold</span> words to <span style = "color: red; font-weight: bold">red</span>, simply mouse over <i>that word</i>; mouse out from <i>that word</i> returns it to <span style = "color: black; font-weight: bold">black</span> color.</a>
+		</p>
+		<p>
+			<br><strong>We</strong> have just started <strong>this</strong> section for the users (<strong>beginner</strong> to intermediate) who want to work with <strong>various</strong> JavaScript <strong>problems</strong> and write scripts online to <strong>test</strong> their JavaScript <strong>skill</strong>.
+		</p>
+		
+		<script>
+			var boldWords = document.getElementsByTagName("strong");	// variable 'boldWords' created for all words with <strong> tags
+
+			/* Scenario 1:
+			Change an individual bold word to red color text when it is moused over and
+			returned to black color text when it is moused out. */
+			for (var i = 0; i < boldWords.length; i++)
+			{
+				boldWords[i].addEventListener("mouseover", function ()	// addEventListener 'mouseover' for the chosen individual bold word
+				{
+					this.style.color = "red";							// the individual bold word gets its text color changed to red
+				});
+				boldWords[i].addEventListener("mouseout", function ()	// addEventListener 'mouseout' for the chosen individual bold word
+				{
+					this.style.color = "black";							// the individual bold word gets its text color returned to black
+				});
+			};
+			
+			/* Scenario 2:
+			Change all bold words of the following paragraph simultaneously to red color text when the introductory line is moused over and
+			returned to black color text when the introductory line is moused out. */
+			function changeToRed() 										// function 'changeToRed' called by event onMouseOver in introductory line
+			{
+				for (var i = 0; i < boldWords.length; i++)
+				{                                                    
+					boldWords[i].style.color = "red";					// all bold words of paragraph get their text color changed to red
+				}
+			};
+
+			function returnToBlack()									// function 'returnToBlack' called by event onMouseOut in introductory line
+			{
+				for (var i = 0; i < boldWords.length; i++) 
+				{
+					boldWords[i].style.color = "black";					// all bold words of paragraph get their text color returned to black
+				}
+			};
+		</script>
+	</body>
+</html>
